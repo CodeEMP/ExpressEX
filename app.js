@@ -11,7 +11,9 @@ nunjucks.configure('views', {
 });
 
 app.get('/', function (request, response) {
-  response.send('Hello World!');
+  var name = request.query.name || 'World';
+  var context = {title: 'Hello', name: name};
+  response.render('index.html', context);
 });
 
 app.listen(8080, function () {
